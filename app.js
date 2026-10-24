@@ -2,6 +2,22 @@
    administrator actions are always server-authenticated through PHP. */
 const $ = (s) => document.querySelector(s),
   categoriesDefault = ["Nature", "Religious", "Heritage", "Recreational"];
+const localImages = {
+  "Attanagalla Rajamaha Viharaya":
+    "images/attanagalla-rajamaha-viharaya.jpg",
+  "Henarathgoda Botanical Garden":
+    "images/henarathgoda-botanical-garden.jpg",
+  "Horagolla National Park": "images/horagolla-national-park.jpg",
+  "Kaleiliya Wetlands": "images/kaleiliya-wetlands.jpg",
+  "Maligatenna Rajamaha Viharaya":
+    "images/maligatenna-rajamaha-viharaya.jpg",
+  "Mitirigala Nissarana Vanaya":
+    "images/mitirigala-nissarana-vanaya.jpg",
+  "Nittambuwa Clock Tower & surrounds":
+    "images/nittambuwa-clock-tower.webp",
+  "Pilikuttuwa Cave Temple": "images/pilikuttuwa-cave-temple.jpg",
+  "Warana Rajamaha Viharaya": "images/warana-rajamaha-viharaya.jpg",
+};
 const fallback = [
   {
     id: 1,
@@ -94,7 +110,7 @@ const fallback = [
   visit_minutes: null,
   latitude: null,
   longitude: null,
-  image_url: null,
+  image_url: localImages[p.name] || null,
 }));
 function norm(p) {
   return {
@@ -118,7 +134,7 @@ function norm(p) {
     visit_minutes: p.visit_minutes ?? p.visitMinutes ?? null,
     latitude: p.latitude ?? p.lat ?? null,
     longitude: p.longitude ?? p.lon ?? null,
-    image_url: p.image_url || null,
+    image_url: p.image_url || localImages[p.name] || null,
   };
 }
 let places = fallback,
