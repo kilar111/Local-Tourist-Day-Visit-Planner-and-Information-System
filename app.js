@@ -5,6 +5,8 @@ const $ = (s) => document.querySelector(s),
 const localImages = {
   "Attanagalla Rajamaha Viharaya":
     "images/attanagalla-rajamaha-viharaya.jpg",
+  "Bogahawatta Ambalama": "images/bogahawatta-ambalama.png",
+  "Wathurugama Ambalama": "images/bogahawatta-ambalama.png",
   "Henarathgoda Botanical Garden":
     "images/henarathgoda-botanical-garden.jpg",
   "Horagolla National Park": "images/horagolla-national-park.jpg",
@@ -77,11 +79,13 @@ const fallback = [
   },
   {
     id: 8,
-    name: "Wathurugama Ambalama",
+    name: "Bogahawatta Ambalama",
     categories: ["Heritage"],
     distance_km: 3,
     short_description:
-      "A traditional historical structure representing local architecture and heritage.",
+      "A protected historic wayside rest built on ten granite pillars, representing indigenous architecture and hospitality.",
+    description:
+      "The Ambalama is a simple structure designed to provide shelter for passing travellers. There were no charges for using an Ambalama because it was made as an offering of goodwill (Pinkama). Ambalamas were also places where travellers shared the night and recited old Sinhala poetry for others to listen to. These wayside rests represent indigenous architecture and were built to withstand local weather conditions. Bogahawatta Ambalama in Kirindiwela is situated beside the roadside. It is rectangular in shape and built on ten granite pillars. The roof is clad with rata ulu, probably following restoration work at the site. In 2009, the Archaeological Department declared Bogahawatta Ambalama a protected monument in Sri Lanka.",
   },
   {
     id: 9,
@@ -113,19 +117,26 @@ const fallback = [
   image_url: localImages[p.name] || null,
 }));
 function norm(p) {
+  const isBogahawatta =
+    p.name === "Wathurugama Ambalama" || p.name === "Bogahawatta Ambalama";
   return {
     ...p,
     id: Number(p.id),
-    name: p.name,
+    name: isBogahawatta ? "Bogahawatta Ambalama" : p.name,
     categories: Array.isArray(p.categories)
       ? p.categories
       : p.category
         ? [p.category]
         : [],
     distance_km: p.distance_km ?? p.distance ?? null,
-    short_description:
-      p.short_description || p.shortDescription || p.description || "",
-    description: p.description || p.short_description || "",
+    short_description: isBogahawatta
+      ? fallback.find((item) => item.name === "Bogahawatta Ambalama")
+          ?.short_description
+      : p.short_description || p.shortDescription || p.description || "",
+    description: isBogahawatta
+      ? fallback.find((item) => item.name === "Bogahawatta Ambalama")
+          ?.description
+      : p.description || p.short_description || "",
     opening_hours: p.opening_hours ?? p.hours ?? null,
     entrance_fee: p.entrance_fee ?? p.fee ?? null,
     fee_currency: p.fee_currency || "LKR",
@@ -134,7 +145,10 @@ function norm(p) {
     visit_minutes: p.visit_minutes ?? p.visitMinutes ?? null,
     latitude: p.latitude ?? p.lat ?? null,
     longitude: p.longitude ?? p.lon ?? null,
-    image_url: p.image_url || localImages[p.name] || null,
+    image_url:
+      p.image_url ||
+      localImages[isBogahawatta ? "Bogahawatta Ambalama" : p.name] ||
+      null,
   };
 }
 let places = fallback,
