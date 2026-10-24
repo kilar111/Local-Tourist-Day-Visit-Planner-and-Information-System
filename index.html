@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#f7f5ef">
+    <title>Fieldnotes — Local day-trip guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="topbar"><a class="brand" href="#top"><span
+                class="mark">f.</span> fieldnotes</a>
+        <nav class="nav"><a href="#places">The places</a><a href="#map">Map & distances</a><a href="#guide">How to
+                use</a><a class="plan-link" href="#planner">My day plan <span id="navCount">0</span></a></nav>
+    </header>
+    <main id="top">
+        <section class="hero">
+            <div>
+                <div class="eyebrow">A local guide · Gampaha district</div>
+                <h1>Small journeys.<br>Good days out.</h1>
+                <p>A considered guide to places worth discovering around Kirindiwela and Bandaranaikepura. Find a quiet
+                    temple, a forest path or a garden for the afternoon — then bring your day together.</p>
+                <div class="hero-actions"><a href="#places"><button class="button primary">Explore the guide
+                            ↗</button></a><a href="#planner"><button class="button secondary">Build a day
+                            plan</button></a></div>
+            </div>
+            <div class="hero-image">
+                <div class="scenic-art" aria-label="Illustrated local landscape">
+                    <div class="scenic-label">A little closer to home<small>Kirindiwela · Sri Lanka</small></div>
+                </div>
+                <div class="photo-note"><b>A little closer to home</b>10 places · within 25 km</div>
+            </div>
+        </section>
+        <div class="stats">
+            <div class="stat"><b id="placeCount">10</b><span>places to begin with</span></div>
+            <div class="stat"><b id="categoryCount">4</b><span>ways to spend the day</span></div>
+            <div class="stat"><b>25 km</b><span>from your starting area</span></div>
+            <div class="stat"><b>One day</b><span>made your own</span></div>
+        </div>
+        <section class="section" id="places">
+            <div class="section-head">
+                <div>
+                    <div class="eyebrow">The field guide</div>
+                    <h2>Find your kind of day</h2>
+                </div>
+                <p>Distances are approximate from Bandaranaikepura.</p>
+            </div>
+            <div class="toolbar"><label class="search"><span>⌕</span><input id="search"
+                        placeholder="Search places by name…" aria-label="Search attractions"></label><select
+                    class="sort" id="sort">
+                    <option value="default">Sort: Recommended</option>
+                    <option value="distance">Nearest first</option>
+                    <option value="name">Name A–Z</option>
+                </select></div>
+            <div class="chips" id="chips"></div>
+            <div class="cards" id="cards"></div>
+        </section>
+        <section class="section" id="map">
+            <div class="section-head">
+                <div>
+                    <div class="eyebrow">Find your way</div>
+                    <h2>Places on the map</h2>
+                </div>
+                <p>Open a place in Maps for directions.</p>
+            </div>
+            <div class="map-layout">
+                <div class="map-list" id="mapList"></div>
+                <div class="mapbox"><iframe id="mapFrame" title="Search map for attractions near Kirindiwela"
+                        loading="lazy"
+                        src="https://www.google.com/maps?q=Kirindiwela%2C%20Sri%20Lanka&output=embed"></iframe>
+                    <div class="map-caption"><span id="mapCaption">Kirindiwela & Bandaranaikepura · approximate
+                            area</span><br><a id="mapFallbackLink" target="_blank" rel="noopener"
+                            href="https://www.google.com/maps/search/?api=1&amp;query=Kirindiwela%20Sri%20Lanka">If
+                            preview is blank, open map search ↗</a></div>
+                </div>
+            </div>
+            <p class="map-note">Attraction coordinates have not been independently verified. Map search results are
+                approximate; confirm the exact location before travelling.</p>
+        </section>
+        <section class="planner" id="planner">
+            <div class="planner-inner">
+                <div class="planner-intro">
+                    <div class="eyebrow">Your day, your pace</div>
+                    <h2>Make a simple plan.</h2>
+                    <p>Add places from the guide and put them in an order that suits you. Your plan stays on this
+                        device, so you can come back to it later.</p>
+                    <div class="settings">
+                        <div class="field"><label for="tripDate">Trip date</label><input id="tripDate" type="date">
+                        </div>
+                        <div class="field"><label for="departure">Depart around</label><input id="departure" type="time"
+                                value="08:00"></div>
+                        <div class="field"><label for="availableHours">Available time</label><select
+                                id="availableHours">
+                                <option value="">Not set</option>
+                                <option value="4">4 hours</option>
+                                <option value="6">6 hours</option>
+                                <option value="8">8 hours</option>
+                                <option value="10">10 hours</option>
+                            </select></div>
+                        <div class="field"><label for="travelers">Travellers</label><input id="travelers" type="number"
+                                min="1" max="30" value="1"></div>
+                        <div class="field full"><label for="startLocation">Route starting point</label><input
+                                id="startLocation" maxlength="120" value="Bandaranaikepura, Sri Lanka"></div>
+                        <div class="field full-width"><label for="preferred">Preferred
+                                category</label><select id="preferred">
+                                <option value="All">Any category</option>
+                                <option>Nature</option>
+                                <option>Religious</option>
+                                <option>Heritage</option>
+                                <option>Recreational</option>
+                            </select></div>
+                    </div>
+                    <div class="planner-summary">
+                        <div><b id="planPlaces">0</b><span>places selected</span></div>
+                        <div><b id="planVisitTime">—</b><span>known visit time</span></div>
+                    </div>
+                    <p class="planner-footnote">Indicative only. Hours and travel time are not checked
+                        live.</p>
+                </div>
+                <div class="itinerary">
+                    <div class="itin-head"><b>Today’s itinerary</b><button id="clearPlan">Clear plan</button></div>
+                    <div class="notice" id="planAdvice">Add a place to see your day summary.</div>
+                    <div class="notice" id="timeRemainder">Set an available trip duration to
+                        estimate remaining visit time.</div>
+                    <div id="itinItems"></div>
+                    <div class="planner-summary fee-summary">
+                        <div><b id="planKnownFees">LKR —</b><span>known fee subtotal · <span id="feePerPerson">per
+                                    person</span></span></div>
+                        <div><b id="planGroupFees">LKR —</b><span id="unknownFees">group total</span></div>
+                    </div>
+                    <div class="map-note" id="planDistances">Distance estimates are listed per attraction. No multi-stop
+                        route distance is available.</div>
+                    <div class="itin-actions"><button class="button primary" id="printPlan">Print day
+                            plan</button><button class="button secondary" id="sharePlan">Copy summary</button><button
+                            class="button secondary" id="openRoute">Open route map ↗</button><button
+                            class="button secondary" id="newPlan">Start new plan</button></div>
+                </div>
+            </div>
+        </section>
+        <section class="section" id="guide">
+            <div class="section-head">
+                <div>
+                    <div class="eyebrow">A few useful notes</div>
+                    <h2>Before you head out</h2>
+                </div>
+            </div>
+            <div class="guide">
+                <article><span class="index">01 / DISCOVER</span>
+                    <h3>Start with what you like</h3>
+                    <p>Choose a category or search by name. Open a place to see its hours, facilities and a few
+                        practical notes.</p>
+                </article>
+                <article><span class="index">02 / PLAN</span>
+                    <h3>Keep the day comfortable</h3>
+                    <p>Add a few stops to your itinerary. The total is an indicative sum of distances from the starting
+                        area, not the distance between stops.</p>
+                </article>
+                <article><span class="index">03 / CHECK</span>
+                    <h3>Confirm before you travel</h3>
+                    <p>Opening times, fees and road conditions can change. Check directly with each place before you set
+                        off.</p>
+                </article>
+            </div>
+        </section>
+    </main>
+    <footer class="footer"><span>Fieldnotes · Local Tourist Day-Visit Planner · Kirindiwela, Sri
+            Lanka</span><span>Information is indicative and should be verified before travel.</span><a
+            class="footer-admin" href="admin/index.html" target="_blank" rel="noopener noreferrer">Administrator</a></footer>
+    <div class="toast" id="toast"></div>
+    <div class="modal-backdrop" id="modal">
+        <div class="modal" id="modalContent"></div>
+    </div>
+    <script src="app.js" defer></script>
+</body>
+
+</html>
