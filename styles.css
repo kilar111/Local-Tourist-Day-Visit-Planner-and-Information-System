@@ -1062,31 +1062,20 @@
             place-items: center;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(140deg, #ccd9c7, #768f76 58%, #355f52);
             color: #fff
         }
 
-        .scenic-art:before,
         .scenic-art:after {
             content: '';
             position: absolute;
-            border: 1px solid #ffffff40;
-            width: 330px;
-            height: 330px;
-            border-radius: 50%;
-            left: 20%;
-            top: 8%;
-            box-shadow: 0 0 0 34px #ffffff12, 0 0 0 72px #ffffff0b
+            inset: 0;
+            background: linear-gradient(180deg, #102d2a2e, #102d2a66);
         }
 
-        .scenic-art:after {
-            width: 110px;
-            height: 110px;
-            left: auto;
-            right: 10%;
-            top: auto;
-            bottom: -15%;
-            background: #e5d7b04a
+        .scenic-art img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .scenic-label {
